@@ -6,12 +6,11 @@ include(FetchContent)
 FetchContent_Declare(
         ${PROJECT_NAME}
         GIT_REPOSITORY "https://github.com/lua/lua"
-        GIT_TAG "master"
-        SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lua")
+        GIT_TAG "master")
 FetchContent_MakeAvailable(${PROJECT_NAME})
 
 file(GLOB LUA_SOURCES "${lua_SOURCE_DIR}/*.c" "${lua_SOURCE_DIR}/*.h")
-list(FILTER LUA_SOURCES EXCLUDE REGEX ".*onelua.cpp$")
+list(FILTER LUA_SOURCES EXCLUDE REGEX ".*onelua.c$") # Duplicate definitions
 add_library(${PROJECT_NAME} STATIC ${LUA_SOURCES})
 
 target_compile_definitions(${PROJECT_NAME}
